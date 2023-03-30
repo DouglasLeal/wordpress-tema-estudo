@@ -19,3 +19,27 @@ function exemplo_register_navwalker(){
 	require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 }
 add_action( 'after_setup_theme', 'exemplo_register_navwalker' );
+
+function exemplo_registro_post_evento(){
+	register_post_type('eventos', [
+		'labels' => [
+			'name' => 'Eventos',
+			'new_item' => 'Adicionar novo evento'
+		],
+		'public' => true,
+		'menu_position' => 4,
+		'menu_icon' => 'dashicons-calendar-alt',
+		'supports' => array('title', 'editor', 'thumbnail'),
+	]);
+
+	register_taxonomy(
+		'local',
+		'eventos',
+		array(
+			'labels' => array('name' => 'Locais'),
+			'public' => true,
+			'hierarchical' => true
+		)
+	);
+}
+add_action( 'init', 'exemplo_registro_post_evento' );
