@@ -1,13 +1,18 @@
 <?php get_header(); ?>
     <div class="container">
-        <h1 class="text-center">Hello</h1>
+        <div class="d-flex justify-content-between align-items-center my-5">
+            <h1 class="text-center">Blog</h1>
+
+            <?php get_search_form() ?>
+        </div>
+
 
         <div class="row g-3">
-			<?php
-			if ( have_posts() ):
-				while ( have_posts() ):
-					the_post();
-					?>
+            <?php
+            if (have_posts()):
+                while (have_posts()):
+                    the_post();
+                    ?>
                     <div class="col-sm-12 col-lg-6 d-flex">
                         <a href="<?= get_permalink() ?>" class="d-flex">
                             <div class="card">
@@ -20,11 +25,11 @@
                             </div>
                         </a>
                     </div>
-				<?php
+                <?php
 
-				endwhile;
-			endif;
-			?>
+                endwhile;
+            endif;
+            ?>
         </div>
     </div>
 
